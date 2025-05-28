@@ -7,3 +7,6 @@ export * from './GetByIdTaxResultDto';
 export * from './CreateCompanyDto';
 export * from './CreateCompanyResultDto';
 export * from './GetCompanyResultDto';
+export * from './UpdateCompanyDto';
+export * from './UpdateCompanyResultDto';
+export * from './GetByIdCompanyResultDto';

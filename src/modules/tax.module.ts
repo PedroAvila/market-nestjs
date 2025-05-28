@@ -6,11 +6,10 @@ import { TaxEntity } from '../infrastructure/persistence/typeorm/entities';
 import { UpdateTaxUseCase } from '../application/use-case/tax/update';
 import { GetTaxUseCase } from '../application/use-case/tax/get';
 import { GetByIdTaxUseCase } from '../application/use-case/tax/single';
-import { CompanyModule } from './company.module';
 import { TAX_USECASE_TOKENS } from 'src/infrastructure/tokens';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TaxEntity]), CompanyModule],
+  imports: [TypeOrmModule.forFeature([TaxEntity])],
   controllers: [TaxController],
   providers: [
     {
@@ -31,6 +30,7 @@ import { TAX_USECASE_TOKENS } from 'src/infrastructure/tokens';
     },
   ],
   exports: [
+    TypeOrmModule.forFeature([TaxEntity]),
     TAX_USECASE_TOKENS.create,
     TAX_USECASE_TOKENS.update,
     TAX_USECASE_TOKENS.getAll,
