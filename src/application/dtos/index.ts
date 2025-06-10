@@ -10,3 +10,5 @@ export * from './GetCompanyResultDto';
 export * from './UpdateCompanyDto';
 export * from './UpdateCompanyResultDto';
 export * from './GetByIdCompanyResultDto';
+export * from './CreateCategoryDto';
+export * from './CreateCategoryResultDto';

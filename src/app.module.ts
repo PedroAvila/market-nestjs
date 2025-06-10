@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TaxModule } from './modules/tax.module';
 import { TaxController } from './infrastructure/api/tax/tax.controller';
 import { CompanyModule } from './modules/company.module';
+import { CategoryModule } from './modules/category.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CompanyModule } from './modules/company.module';
     }),
     TaxModule,
     CompanyModule,
+    CategoryModule,
   ],
   controllers: [TaxController],
   providers: [],

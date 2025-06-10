@@ -11,3 +11,18 @@ export const COMPANY_USECASE_TOKENS = {
   getAll: Symbol('IGetCompanyUseCase'),
   getById: Symbol('IGetByIdCompanyUseCase'),
 };
+
+export const CODE_GENERATOR_PERSISTENCE_TOKENS = {
+  generateCode: Symbol('ICodeGeneratorPort'),
+};
+
+export const CODE_GENERATOR_SERVICE_TOKENS = {
+  generateCode: Symbol('ICodeGeneratorServicePort'),
+};
+
+export const CATEGORY_USECASE_TOKENS = {
+  create: Symbol('ICreateCategoryUseCase'),
+  update: Symbol('IUpdateCategoryUseCase'),
+  getAll: Symbol('IGetCategoryUseCase'),
+  getById: Symbol('IGetByIdCategoryUseCase'),
+};

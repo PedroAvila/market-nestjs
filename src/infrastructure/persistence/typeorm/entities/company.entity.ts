@@ -3,10 +3,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TaxEntity } from './tax.entity';
 import { StatusCompany } from '../../../../domain/enums';
+import { CategoryEntity } from './category.entity';
 
 @Entity('companies')
 export class CompanyEntity {
@@ -47,4 +49,7 @@ export class CompanyEntity {
     default: StatusCompany.ENABLED,
   })
   status: StatusCompany;
+
+  @OneToMany(() => CategoryEntity, (category) => category.company)
+  categories: CategoryEntity[];
 }
