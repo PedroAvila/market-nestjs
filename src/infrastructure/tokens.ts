@@ -23,6 +23,6 @@ export const CODE_GENERATOR_SERVICE_TOKENS = {
 export const CATEGORY_USECASE_TOKENS = {
   create: Symbol('ICreateCategoryUseCase'),
   update: Symbol('IUpdateCategoryUseCase'),
-  getAll: Symbol('IGetCategoryUseCase'),
+  getAll: Symbol('IGetAllCategoryByCompanyIdUseCase'),
   getById: Symbol('IGetByIdCategoryUseCase'),
 };

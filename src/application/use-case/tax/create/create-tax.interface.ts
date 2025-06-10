@@ -1,4 +1,4 @@
-import { CreateTaxDto, CreateTaxResultDto } from '../../../dtos';
+import { CreateTaxDto, CreateTaxResultDto } from '@application/dtos';
 
 export interface ICreateTaxUseCase {
   execute(dto: CreateTaxDto): Promise<CreateTaxResultDto>;

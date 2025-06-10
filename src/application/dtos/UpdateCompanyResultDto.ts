@@ -1,4 +1,4 @@
-import { StatusCompany } from 'src/domain/enums';
+import { StatusCompany } from '@domain/enums';
 
 export class UpdateCompanyResultDto {
   id: string;

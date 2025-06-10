@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CreateTaxUseCase } from '../application/use-case/tax/create';
-import { TaxController } from 'src/infrastructure/api/tax/tax.controller';
-import { TaxEntity } from '../infrastructure/persistence/typeorm/entities';
-import { UpdateTaxUseCase } from '../application/use-case/tax/update';
-import { GetTaxUseCase } from '../application/use-case/tax/get';
-import { GetByIdTaxUseCase } from '../application/use-case/tax/single';
-import { TAX_USECASE_TOKENS } from 'src/infrastructure/tokens';
+import { TaxController } from '../infrastructure/api/tax/tax.controller';
+import { TaxEntity } from '@infrastructure/persistence';
+import { TAX_USECASE_TOKENS } from '../infrastructure/tokens';
+import {
+  CreateTaxUseCase,
+  GetByIdTaxUseCase,
+  GetTaxUseCase,
+  UpdateTaxUseCase,
+} from '@application/use-case/tax';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TaxEntity])],

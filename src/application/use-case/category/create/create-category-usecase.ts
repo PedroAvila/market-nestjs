@@ -1,16 +1,16 @@
 import { Repository } from 'typeorm';
-import { CreateCategoryDto, CreateCategoryResultDto } from '../../../dtos';
+import { CreateCategoryDto, CreateCategoryResultDto } from '@application/dtos';
 import { ICreateCategoryUseCase } from './create-category.interface';
-import {
-  CategoryEntity,
-  CompanyEntity,
-} from '../../../../infrastructure/persistence/typeorm/entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Inject, NotFoundException } from '@nestjs/common';
-import { Category } from '../../../../domain/entities';
+import { Category } from '@domain/entities';
 import { ICodeGeneratorServicePort } from '../../../../domain/ports';
-import { CategoryMapper } from '../../../../infrastructure/persistence/typeorm/mappers';
-import { CODE_GENERATOR_SERVICE_TOKENS } from 'src/infrastructure/tokens';
+import { CODE_GENERATOR_SERVICE_TOKENS } from '../../../../infrastructure/tokens';
+import {
+  CategoryEntity,
+  CategoryMapper,
+  CompanyEntity,
+} from '@infrastructure/persistence';
 
 export class CreateCategoryUseCase implements ICreateCategoryUseCase {
   constructor(

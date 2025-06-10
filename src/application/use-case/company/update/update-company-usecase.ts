@@ -1,10 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {
-  CompanyEntity,
-  TaxEntity,
-} from '../../../../infrastructure/persistence/typeorm/entities';
-import { UpdateCompanyDto, UpdateCompanyResultDto } from '../../../dtos';
+import { CompanyEntity, TaxEntity } from '@infrastructure/persistence';
+import { UpdateCompanyDto, UpdateCompanyResultDto } from '@application/dtos';
 import { IUpdateCompanyUseCase } from './update-company.interface';
 import { Injectable, NotFoundException } from '@nestjs/common';
 

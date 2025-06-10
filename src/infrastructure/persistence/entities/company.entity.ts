@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TaxEntity } from './tax.entity';
-import { StatusCompany } from '../../../../domain/enums';
+import { StatusCompany } from '../../../domain/enums';
 import { CategoryEntity } from './category.entity';
 
 @Entity('companies')

@@ -1,8 +1,8 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TaxEntity } from '../../../../infrastructure/persistence/typeorm/entities';
-import { GetByIdTaxResultDto } from '../../../dtos';
+import { TaxEntity } from '@infrastructure/persistence';
+import { GetByIdTaxResultDto } from '@application/dtos';
 import { IGetByIdTaxUseCase } from './get-by-id-tax.interface';
 
 export class GetByIdTaxUseCase implements IGetByIdTaxUseCase {

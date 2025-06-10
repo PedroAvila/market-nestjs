@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CompanyController } from 'src/infrastructure/api/company/company.controller';
-import { COMPANY_USECASE_TOKENS } from 'src/infrastructure/tokens';
-import { CreateCompanyUseCase } from '../application/use-case/company/create';
-import { GetCompanyUseCase } from '../application/use-case/company/get';
-import { GetByIdCompanyUseCase } from '../application/use-case/company/single';
-import { UpdateCompanyUseCase } from '../application/use-case/company/update';
-import { CompanyEntity } from '../infrastructure/persistence/typeorm/entities';
+import { CompanyController } from '../infrastructure/api/company/company.controller';
+import { COMPANY_USECASE_TOKENS } from '../infrastructure/tokens';
+import { CompanyEntity } from '@infrastructure/persistence';
 import { TaxModule } from './tax.module';
+import {
+  CreateCompanyUseCase,
+  GetByIdCompanyUseCase,
+  GetCompanyUseCase,
+  UpdateCompanyUseCase,
+} from '@application/use-case/company';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CompanyEntity]), TaxModule],

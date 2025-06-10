@@ -1,11 +1,10 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tax } from '../../../../domain/entities';
-import { TaxEntity } from '../../../../infrastructure/persistence/typeorm/entities';
-import { TaxMapper } from '../../../../infrastructure/persistence/typeorm/mappers';
-import { CreateTaxDto, CreateTaxResultDto } from '../../../dtos';
+import { Tax } from '@domain/entities';
+import { CreateTaxDto, CreateTaxResultDto } from '@application/dtos';
 import { ICreateTaxUseCase } from './create-tax.interface';
+import { TaxEntity, TaxMapper } from '@infrastructure/persistence';
 
 @Injectable()
 export class CreateTaxUseCase implements ICreateTaxUseCase {

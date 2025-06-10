@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { GetByIdCompanyResultDto } from '../../../dtos';
-import { IGetByIdCompanyUseCase } from './get-by-id-company-usecase';
-import { CompanyEntity } from 'src/infrastructure/persistence/typeorm/entities';
+import { GetByIdCompanyResultDto } from '@application/dtos';
+import { IGetByIdCompanyUseCase } from './get-by-id-company-interface';
+import { CompanyEntity } from '@infrastructure/persistence';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { NotFoundException } from '@nestjs/common';

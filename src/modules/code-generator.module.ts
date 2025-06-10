@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CodeGeneratorService } from 'src/domain/services/code-generator.service';
-import { CodeGeneratorAdapter } from 'src/infrastructure/adapters/code-generator.adapter';
+import { CodeGeneratorService } from '../domain/services/code-generator.service';
+import { CodeGeneratorAdapter } from '../infrastructure/adapters/code-generator.adapter';
 import {
   CODE_GENERATOR_PERSISTENCE_TOKENS,
   CODE_GENERATOR_SERVICE_TOKENS,
-} from 'src/infrastructure/tokens';
+} from '../infrastructure/tokens';
 
 @Module({
   providers: [

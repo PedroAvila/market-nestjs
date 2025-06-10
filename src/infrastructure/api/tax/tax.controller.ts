@@ -1,4 +1,17 @@
 import {
+  CreateTaxDto,
+  CreateTaxResultDto,
+  GetTaxResultDto,
+  UpdateTaxDto,
+  UpdateTaxResultDto,
+} from '@application/dtos';
+import {
+  ICreateTaxUseCase,
+  IGetByIdTaxUseCase,
+  IGetTaxUseCase,
+  IUpdateTaxUseCase,
+} from '@application/use-case/tax';
+import {
   Body,
   Controller,
   Get,
@@ -9,19 +22,7 @@ import {
   Put,
   ValidationPipe,
 } from '@nestjs/common';
-import {
-  CreateTaxDto,
-  GetTaxResultDto,
-  UpdateTaxDto,
-  UpdateTaxResultDto,
-} from '../../../application/dtos';
-
-import { CreateTaxResultDto } from '../../../application/dtos';
-import { ICreateTaxUseCase } from '../../../application/use-case/tax/create';
-import { IUpdateTaxUseCase } from '../../../application/use-case/tax/update';
-import { IGetTaxUseCase } from '../../../application/use-case/tax/get';
-import { IGetByIdTaxUseCase } from '../../../application/use-case/tax/single';
-import { TAX_USECASE_TOKENS } from 'src/infrastructure/tokens';
+import { TAX_USECASE_TOKENS } from '../../tokens';
 
 @Controller('taxes')
 export class TaxController {

@@ -2,10 +2,9 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from '../../../../domain/entities';
 import { Repository } from 'typeorm';
-import { CompanyEntity } from '../../../../infrastructure/persistence/typeorm/entities';
-import { CompanyMapper } from '../../../../infrastructure/persistence/typeorm/mappers';
 import { CreateCompanyDto, CreateCompanyResultDto } from '../../../dtos';
 import { ICreateCompanyUseCase } from './create-company.interface';
+import { CompanyEntity, CompanyMapper } from '@infrastructure/persistence';
 
 @Injectable()
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {

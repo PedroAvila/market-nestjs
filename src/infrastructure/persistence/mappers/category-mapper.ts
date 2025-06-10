@@ -1,5 +1,5 @@
-import { Category } from '../../../../domain/entities';
-import { CategoryEntity } from '../entities';
+import { Category } from '@domain/entities';
+import { CategoryEntity } from '@infrastructure/persistence';
 
 export class CategoryMapper {
   static toDomain(entity: CategoryEntity): Category {

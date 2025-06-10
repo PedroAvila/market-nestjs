@@ -1,4 +1,4 @@
-import { CreateCompanyDto, CreateCompanyResultDto } from 'src/application/dtos';
+import { CreateCompanyDto, CreateCompanyResultDto } from '@application/dtos';
 
 export interface ICreateCompanyUseCase {
   execute(dto: CreateCompanyDto): Promise<CreateCompanyResultDto>;

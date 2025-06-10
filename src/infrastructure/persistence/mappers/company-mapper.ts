@@ -1,5 +1,5 @@
-import { Company } from '../../../../domain/entities';
-import { CompanyEntity } from '../entities';
+import { Company } from '@domain/entities';
+import { CompanyEntity } from '@infrastructure/persistence';
 
 export class CompanyMapper {
   static toDomain(entity: CompanyEntity): Company {

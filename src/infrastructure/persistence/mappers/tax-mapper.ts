@@ -1,5 +1,5 @@
-import { Tax } from '../../../../domain/entities';
-import { TaxEntity } from '../entities/tax.entity';
+import { Tax } from '@domain/entities';
+import { TaxEntity } from '@infrastructure/persistence';
 
 export class TaxMapper {
   static toDomain(entity: TaxEntity): Tax {

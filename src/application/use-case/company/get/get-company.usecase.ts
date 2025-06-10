@@ -1,8 +1,8 @@
-import { GetCompanyResultDto } from 'src/application/dtos';
-import { IGetCompanyUseCase } from './get-company.interface';
-import { Repository } from 'typeorm';
-import { CompanyEntity } from '../../../../infrastructure/persistence/typeorm/entities';
+import { GetCompanyResultDto } from '@application/dtos';
+import { CompanyEntity } from '@infrastructure/persistence';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { IGetCompanyUseCase } from './get-company.interface';
 
 export class GetCompanyUseCase implements IGetCompanyUseCase {
   constructor(

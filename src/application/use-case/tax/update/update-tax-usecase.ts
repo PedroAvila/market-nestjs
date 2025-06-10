@@ -1,8 +1,8 @@
+import { UpdateTaxDto, UpdateTaxResultDto } from '@application/dtos';
+import { TaxEntity } from '@infrastructure/persistence';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TaxEntity } from '../../../../infrastructure/persistence/typeorm/entities';
-import { UpdateTaxDto, UpdateTaxResultDto } from '../../../dtos';
 import { IUpdateTaxUseCase } from './update-tax.interface';
 
 @Injectable()

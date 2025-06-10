@@ -9,18 +9,20 @@ import {
   Put,
   ValidationPipe,
 } from '@nestjs/common';
-import { ICreateCompanyUseCase } from '../../../application/use-case/company/create';
+import {
+  ICreateCompanyUseCase,
+  IGetByIdCompanyUseCase,
+  IGetCompanyUseCase,
+  IUpdateCompanyUseCase,
+} from '@application/use-case/company';
 import {
   CreateCompanyDto,
   CreateCompanyResultDto,
   GetCompanyResultDto,
   UpdateCompanyDto,
   UpdateCompanyResultDto,
-} from '../../../application/dtos';
-import { COMPANY_USECASE_TOKENS } from 'src/infrastructure/tokens';
-import { IGetCompanyUseCase } from '../../../application/use-case/company/get';
-import { IUpdateCompanyUseCase } from '../../../application/use-case/company/update';
-import { IGetByIdCompanyUseCase } from '../../../application/use-case/company/single';
+} from '@application/dtos';
+import { COMPANY_USECASE_TOKENS } from '../../tokens';
 
 @Controller('companies')
 export class CompanyController {

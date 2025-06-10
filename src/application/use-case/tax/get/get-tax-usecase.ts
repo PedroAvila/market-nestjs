@@ -1,8 +1,8 @@
-import { Repository } from 'typeorm';
-import { GetTaxResultDto } from '../../../dtos';
-import { IGetTaxUseCase } from './get-tax.interface';
-import { TaxEntity } from '../../../../infrastructure/persistence/typeorm/entities';
+import { GetTaxResultDto } from '@application/dtos';
+import { TaxEntity } from '@infrastructure/persistence';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { IGetTaxUseCase } from './get-tax.interface';
 
 export class GetTaxUseCase implements IGetTaxUseCase {
   constructor(
