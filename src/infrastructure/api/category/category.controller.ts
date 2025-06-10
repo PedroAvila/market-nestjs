@@ -6,16 +6,20 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Put,
   ValidationPipe,
 } from '@nestjs/common';
 import {
   CreateCategoryDto,
   CreateCategoryResultDto,
   GetCategoryResultDto,
+  UpdateCategoryDto,
+  UpdateCategoryResultDto,
 } from '@application/dtos';
 import {
   ICreateCategoryUseCase,
   IGetAllCategoryByCompanyIdUseCase,
+  IUpdateCategoryUseCase,
 } from '@application/use-case/category';
 import { CATEGORY_USECASE_TOKENS } from '../../tokens';
 
@@ -27,6 +31,9 @@ export class CategoryController {
 
     @Inject(CATEGORY_USECASE_TOKENS.getAll)
     private readonly getAllCategoryByCompanyIdUseCase: IGetAllCategoryByCompanyIdUseCase,
+
+    @Inject(CATEGORY_USECASE_TOKENS.update)
+    private readonly updateCategoryUseCase: IUpdateCategoryUseCase,
   ) {}
 
   @Get(':companyId')
@@ -41,5 +48,13 @@ export class CategoryController {
     @Body(ValidationPipe) dto: CreateCategoryDto,
   ): Promise<CreateCategoryResultDto> {
     return await this.createCategoryUseCase.execute(dto);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() dto: UpdateCategoryDto,
+  ): Promise<UpdateCategoryResultDto> {
+    return await this.updateCategoryUseCase.execute(id, dto);
   }
 }

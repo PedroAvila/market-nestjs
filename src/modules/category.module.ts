@@ -1,6 +1,7 @@
 import {
   CreateCategoryUseCase,
   GetAllCategoryByCompanyIdUseCase,
+  UpdateCategoryUseCase,
 } from '@application/use-case/category';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -24,7 +25,15 @@ import { CodeGeneratorModule } from './code-generator.module';
       provide: CATEGORY_USECASE_TOKENS.create,
       useClass: CreateCategoryUseCase,
     },
+    {
+      provide: CATEGORY_USECASE_TOKENS.update,
+      useClass: UpdateCategoryUseCase,
+    },
   ],
-  exports: [CATEGORY_USECASE_TOKENS.getAll, CATEGORY_USECASE_TOKENS.create],
+  exports: [
+    CATEGORY_USECASE_TOKENS.getAll,
+    CATEGORY_USECASE_TOKENS.create,
+    CATEGORY_USECASE_TOKENS.update,
+  ],
 })
 export class CategoryModule {}
