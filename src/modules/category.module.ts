@@ -1,6 +1,7 @@
 import {
   CreateCategoryUseCase,
   GetAllCategoryByCompanyIdUseCase,
+  GetByIdCategoryUseCase,
   UpdateCategoryUseCase,
 } from '@application/use-case/category';
 import { Module } from '@nestjs/common';
@@ -29,11 +30,16 @@ import { CodeGeneratorModule } from './code-generator.module';
       provide: CATEGORY_USECASE_TOKENS.update,
       useClass: UpdateCategoryUseCase,
     },
+    {
+      provide: CATEGORY_USECASE_TOKENS.getById,
+      useClass: GetByIdCategoryUseCase,
+    },
   ],
   exports: [
     CATEGORY_USECASE_TOKENS.getAll,
     CATEGORY_USECASE_TOKENS.create,
     CATEGORY_USECASE_TOKENS.update,
+    CATEGORY_USECASE_TOKENS.getById,
   ],
 })
 export class CategoryModule {}

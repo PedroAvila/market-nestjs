@@ -12,6 +12,7 @@ import {
 import {
   CreateCategoryDto,
   CreateCategoryResultDto,
+  GetByIdCategoryResultDto,
   GetCategoryResultDto,
   UpdateCategoryDto,
   UpdateCategoryResultDto,
@@ -19,6 +20,7 @@ import {
 import {
   ICreateCategoryUseCase,
   IGetAllCategoryByCompanyIdUseCase,
+  IGetByIdCategoryUseCase,
   IUpdateCategoryUseCase,
 } from '@application/use-case/category';
 import { CATEGORY_USECASE_TOKENS } from '../../tokens';
@@ -34,13 +36,23 @@ export class CategoryController {
 
     @Inject(CATEGORY_USECASE_TOKENS.update)
     private readonly updateCategoryUseCase: IUpdateCategoryUseCase,
+
+    @Inject(CATEGORY_USECASE_TOKENS.getById)
+    private readonly getbyidCategoryUseCase: IGetByIdCategoryUseCase,
   ) {}
 
-  @Get(':companyId')
+  @Get('/company/:companyId')
   async getAll(
     @Param('companyId', new ParseUUIDPipe()) companyId: string,
   ): Promise<GetCategoryResultDto[]> {
     return await this.getAllCategoryByCompanyIdUseCase.execute(companyId);
+  }
+
+  @Get(':id')
+  async single(
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<GetByIdCategoryResultDto> {
+    return await this.getbyidCategoryUseCase.execute(id);
   }
 
   @Post()

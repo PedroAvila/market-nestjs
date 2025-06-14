@@ -4,8 +4,9 @@ import { IGetByIdCompanyUseCase } from './get-by-id-company-interface';
 import { CompanyEntity } from '@infrastructure/persistence';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
+@Injectable()
 export class GetByIdCompanyUseCase implements IGetByIdCompanyUseCase {
   constructor(
     @InjectRepository(CompanyEntity)
