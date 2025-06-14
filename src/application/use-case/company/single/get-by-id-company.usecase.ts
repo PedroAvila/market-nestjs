@@ -4,7 +4,8 @@ import { IGetByIdCompanyUseCase } from './get-by-id-company-interface';
 import { CompanyEntity } from '@infrastructure/persistence';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 @Injectable()
 export class GetByIdCompanyUseCase implements IGetByIdCompanyUseCase {
@@ -19,7 +20,10 @@ export class GetByIdCompanyUseCase implements IGetByIdCompanyUseCase {
     });
 
     if (!company)
-      throw new NotFoundException(`Company with id ${id} not found`);
+      throw new BusinessException(
+        `Company with id ${id} not found`,
+        HttpStatus.NOT_FOUND,
+      );
 
     return {
       id: company.id,

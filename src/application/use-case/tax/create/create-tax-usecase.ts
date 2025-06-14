@@ -1,10 +1,11 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tax } from '@domain/entities';
 import { CreateTaxDto, CreateTaxResultDto } from '@application/dtos';
 import { ICreateTaxUseCase } from './create-tax.interface';
 import { TaxEntity, TaxMapper } from '@infrastructure/persistence';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 @Injectable()
 export class CreateTaxUseCase implements ICreateTaxUseCase {
@@ -19,7 +20,10 @@ export class CreateTaxUseCase implements ICreateTaxUseCase {
     });
 
     if (exist) {
-      throw new ConflictException(`Tax with name ${dto.name} already exists.`);
+      throw new BusinessException(
+        `Tax with name ${dto.name} already exists.`,
+        HttpStatus.CONFLICT,
+      );
     }
 
     const tax = Tax.createBuilder()

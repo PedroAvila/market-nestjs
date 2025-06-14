@@ -1,9 +1,10 @@
 import { GetCategoryResultDto } from '@application/dtos';
 import { CategoryEntity, CompanyEntity } from '@infrastructure/persistence';
-import { NotFoundException } from '@nestjs/common';
+import { HttpStatus, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IGetAllCategoryByCompanyIdUseCase } from './get-all-category-by-companyid.interface';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 export class GetAllCategoryByCompanyIdUseCase
   implements IGetAllCategoryByCompanyIdUseCase
@@ -21,7 +22,10 @@ export class GetAllCategoryByCompanyIdUseCase
     });
 
     if (!existCompany)
-      throw new NotFoundException(`Company with id ${companyId} not found`);
+      throw new BusinessException(
+        `Company with id ${companyId} not found`,
+        HttpStatus.NOT_FOUND,
+      );
 
     const categories = await this.categoryRespository.find({
       where: { companyId: companyId },

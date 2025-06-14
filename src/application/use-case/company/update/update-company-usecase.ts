@@ -3,7 +3,8 @@ import { Repository } from 'typeorm';
 import { CompanyEntity, TaxEntity } from '@infrastructure/persistence';
 import { UpdateCompanyDto, UpdateCompanyResultDto } from '@application/dtos';
 import { IUpdateCompanyUseCase } from './update-company.interface';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 @Injectable()
 export class UpdateCompanyUseCase implements IUpdateCompanyUseCase {
@@ -23,14 +24,20 @@ export class UpdateCompanyUseCase implements IUpdateCompanyUseCase {
     });
 
     if (!existTax)
-      throw new NotFoundException(`Tax with id ${dto.taxId} not found.`);
+      throw new BusinessException(
+        `Tax with id ${dto.taxId} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
 
     const company = await this.companyRepository.findOne({
       where: { id: id },
     });
 
     if (!company)
-      throw new NotFoundException(`Company with id ${id} not found.`);
+      throw new BusinessException(
+        `Company with id ${id} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
 
     const updateCompany = Object.assign(company, dto);
     const entity = await this.companyRepository.save(updateCompany);

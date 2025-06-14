@@ -1,10 +1,11 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from '../../../../domain/entities';
 import { Repository } from 'typeorm';
 import { CreateCompanyDto, CreateCompanyResultDto } from '../../../dtos';
 import { ICreateCompanyUseCase } from './create-company.interface';
 import { CompanyEntity, CompanyMapper } from '@infrastructure/persistence';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 @Injectable()
 export class CreateCompanyUseCase implements ICreateCompanyUseCase {
@@ -19,8 +20,9 @@ export class CreateCompanyUseCase implements ICreateCompanyUseCase {
     });
 
     if (exist) {
-      throw new ConflictException(
+      throw new BusinessException(
         `Company with name ${dto.name} already exists.`,
+        HttpStatus.CONFLICT,
       );
     }
 

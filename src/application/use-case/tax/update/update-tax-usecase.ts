@@ -1,9 +1,10 @@
 import { UpdateTaxDto, UpdateTaxResultDto } from '@application/dtos';
 import { TaxEntity } from '@infrastructure/persistence';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IUpdateTaxUseCase } from './update-tax.interface';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 @Injectable()
 export class UpdateTaxUseCase implements IUpdateTaxUseCase {
@@ -17,7 +18,11 @@ export class UpdateTaxUseCase implements IUpdateTaxUseCase {
       where: { id },
     });
 
-    if (!tax) throw new NotFoundException(`Tax with id ${id} not found.`);
+    if (!tax)
+      throw new BusinessException(
+        `Tax with id ${id} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
 
     const updateTax = Object.assign(tax, dto);
     const entity = await this.taxRepository.save(updateTax);

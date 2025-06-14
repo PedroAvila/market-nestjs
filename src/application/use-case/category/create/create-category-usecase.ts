@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { CreateCategoryDto, CreateCategoryResultDto } from '@application/dtos';
 import { ICreateCategoryUseCase } from './create-category.interface';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Inject, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Inject, NotFoundException } from '@nestjs/common';
 import { Category } from '@domain/entities';
 import { ICodeGeneratorServicePort } from '../../../../domain/ports';
 import { CODE_GENERATOR_SERVICE_TOKENS } from '../../../../infrastructure/tokens';
@@ -11,6 +11,7 @@ import {
   CategoryMapper,
   CompanyEntity,
 } from '@infrastructure/persistence';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 export class CreateCategoryUseCase implements ICreateCategoryUseCase {
   constructor(
@@ -30,8 +31,9 @@ export class CreateCategoryUseCase implements ICreateCategoryUseCase {
     });
 
     if (!existCompany)
-      throw new NotFoundException(
+      throw new BusinessException(
         `Company with ID ${dto.companyId} not found.`,
+        HttpStatus.NOT_FOUND,
       );
 
     const category = Category.createBuilder()

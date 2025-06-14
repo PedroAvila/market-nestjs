@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
+import { envs } from 'infrastructure/common/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const logger = new Logger('main');
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -27,6 +29,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(envs.port);
+  logger.log(`Market Microservices on port ${envs.port}`);
 }
 bootstrap();

@@ -1,9 +1,10 @@
 import { UpdateCategoryDto, UpdateCategoryResultDto } from '@application/dtos';
 import { CategoryEntity } from '@infrastructure/persistence';
-import { Inject, NotFoundException } from '@nestjs/common';
+import { HttpStatus, Inject, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IUpdateCategoryUseCase } from './update-category-usecase.interface';
+import { BusinessException } from 'infrastructure/common/exceptions';
 
 export class UpdateCategoryUseCase implements IUpdateCategoryUseCase {
   constructor(
@@ -20,7 +21,10 @@ export class UpdateCategoryUseCase implements IUpdateCategoryUseCase {
     });
 
     if (!category)
-      throw new NotFoundException(`Category with id ${id} not found.`);
+      throw new BusinessException(
+        `Category with id ${id} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
 
     const updateCategory = Object.assign(category, dto);
     const entity = await this.categoryRepository.save(updateCategory);
